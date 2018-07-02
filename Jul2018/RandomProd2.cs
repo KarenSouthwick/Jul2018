@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using System.Threading;
+using OpenQA.Selenium.Support.UI;
 
 namespace Jul2018
 {
@@ -14,6 +15,12 @@ namespace Jul2018
     public class RandomProd2
     {
         IWebDriver driver = new ChromeDriver();
+
+        public static int GetRandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
 
         [OneTimeSetUp]
         public void Initialize()
@@ -24,18 +31,31 @@ namespace Jul2018
             driver.FindElement(By.Id("UserName")).SendKeys("ruudhartke");
             driver.FindElement(By.Id("Password")).SendKeys("Aramark22");
             driver.FindElement(By.Id("do-submit")).Click();
+            driver.FindElement(By.Id("do-submitPrimary")).Click();
+            Thread.Sleep(3000);
+            driver.FindElement(By.Id("do-closePopup")).Click();
+            Thread.Sleep(3000);
+            driver.FindElement(By.LinkText("My Products")).Click();
+            driver.FindElement(By.Id("do-closePopup")).Click();
         }
 
         [OneTimeTearDown]
         public void EndTest()
         {
+            driver.FindElement(By.CssSelector(".lock")).Click();
             driver.Quit();
         }
 
         [Test, Order(1)]
-        public void LogOut()
+        public void RandomProduct()
         {
-            driver.FindElement(By.CssSelector(".lock")).Click();
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//div[@id='do-categoryRootNav']/div/div/ul/li[3]/div/div[2]/p/b")).Click();
+            driver.FindElement(By.LinkText("add product")).Click();
+            driver.FindElement(By.Id("ProductLine_Name")).SendKeys("" + GetRandomNumber(100, 1000));
+            driver.FindElement(By.Id("ProductLine_ReferenceCode")).SendKeys("" + GetRandomNumber(16, 99));
+            driver.FindElement(By.XPath("(//button[@type='submit'])[2]")).Click();
+            driver.FindElement(By.XPath("//div[@id='step-0']/div[3]/button")).Click();
         }
     }
 }
