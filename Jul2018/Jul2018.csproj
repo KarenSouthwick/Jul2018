@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RandomProd2.cs" />
     <Compile Include="ThirdScript.cs" />
     <Compile Include="SecondScript.cs" />
     <Compile Include="BasicScript.cs" />
