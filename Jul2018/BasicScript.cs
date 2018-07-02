@@ -11,7 +11,7 @@ using System.Threading;
 namespace Jul2018
 {
     [TestFixture]
-    public class BasicTest
+    public class BasicScript
     {
         IWebDriver driver = new ChromeDriver();
 
@@ -19,7 +19,11 @@ namespace Jul2018
         public void Initialize()
         {
             driver.Navigate().GoToUrl("https://qa-platform.authenticateis.com/Account/Logon");
-            driver.FindElement(By.Id("UserName")).SendKeys("User1508");
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Manage().Window.Size = new System.Drawing.Size(1920, 974);
+            driver.FindElement(By.Id("UserName")).SendKeys("ruudhartke");
+            driver.FindElement(By.Id("Password")).SendKeys("Aramark22");
+            driver.FindElement(By.Id("do-submit")).Click();
         }
 
         [OneTimeTearDown]
@@ -29,9 +33,9 @@ namespace Jul2018
         }
 
         [Test, Order(1)]
-        public void SignUp()
+        public void LogOut()
         {
-            driver.FindElement(By.LinkText("register / sign up")).Click();
+            driver.FindElement(By.CssSelector(".lock")).Click();
         }
     }
 }
