@@ -28,10 +28,9 @@ namespace Jul2018
             driver.Navigate().GoToUrl("https://qa-platform.authenticateis.com/Account/Logon");
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Manage().Window.Size = new System.Drawing.Size(1920, 974);
-            driver.FindElement(By.Id("UserName")).SendKeys("ruudhartke");
+            driver.FindElement(By.Id("UserName")).SendKeys("emmaardron");
             driver.FindElement(By.Id("Password")).SendKeys("Aramark22");
             driver.FindElement(By.Id("do-submit")).Click();
-            driver.FindElement(By.Id("do-submitPrimary")).Click();
             Thread.Sleep(3000);
             driver.FindElement(By.Id("do-closePopup")).Click();
             Thread.Sleep(3000);
@@ -50,10 +49,11 @@ namespace Jul2018
         public void RandomProduct()
         {
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//div[@id='do-categoryRootNav']/div/div/ul/li[3]/div/div[2]/p/b")).Click();
+            driver.FindElement(By.XPath("//div[@id='do-categoryRootNav']/div/div/ul/li/div/div[2]/p/b")).Click();
             driver.FindElement(By.LinkText("add product")).Click();
             driver.FindElement(By.Id("ProductLine_Name")).SendKeys("" + GetRandomNumber(100, 1000));
             driver.FindElement(By.Id("ProductLine_ReferenceCode")).SendKeys("" + GetRandomNumber(16, 99));
+            driver.FindElement(By.XPath("(//input[@type='text'])[5]")).SendKeys("Ackio" + Keys.Enter);
             driver.FindElement(By.XPath("(//button[@type='submit'])[2]")).Click();
             driver.FindElement(By.XPath("//div[@id='step-0']/div[3]/button")).Click();
         }
