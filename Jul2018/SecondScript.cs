@@ -21,7 +21,7 @@ namespace Jul2018
             driver.Navigate().GoToUrl("https://qa-platform.authenticateis.com/Account/Logon");
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Manage().Window.Size = new System.Drawing.Size(1920, 974);
-            driver.FindElement(By.Id("UserName")).SendKeys("ruudhartke");
+            driver.FindElement(By.Id("UserName")).SendKeys("darioeurocash");
             driver.FindElement(By.Id("Password")).SendKeys("Aramark22");
             driver.FindElement(By.Id("do-submit")).Click();
         }
