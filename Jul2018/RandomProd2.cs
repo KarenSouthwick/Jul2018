@@ -32,10 +32,7 @@ namespace Jul2018
             driver.FindElement(By.Id("Password")).SendKeys("Aramark22");
             driver.FindElement(By.Id("do-submit")).Click();
             Thread.Sleep(3000);
-            driver.FindElement(By.Id("do-closePopup")).Click();
-            Thread.Sleep(3000);
             driver.FindElement(By.LinkText("My Products")).Click();
-            driver.FindElement(By.Id("do-closePopup")).Click();
         }
 
         [OneTimeTearDown]
@@ -55,7 +52,6 @@ namespace Jul2018
             driver.FindElement(By.Id("ProductLine_ReferenceCode")).SendKeys("" + GetRandomNumber(16, 99));
             driver.FindElement(By.XPath("(//input[@type='text'])[5]")).SendKeys("Ackio" + Keys.Enter);
             driver.FindElement(By.XPath("(//button[@type='submit'])[2]")).Click();
-            driver.FindElement(By.XPath("//div[@id='step-0']/div[3]/button")).Click();
         }
     }
 }
