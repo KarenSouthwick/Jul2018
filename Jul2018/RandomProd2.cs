@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
+using System.Configuration;
 
 namespace Jul2018
 {
@@ -25,7 +26,7 @@ namespace Jul2018
         [OneTimeSetUp]
         public void Initialize()
         {
-            driver.Navigate().GoToUrl("https://qa-platform.authenticateis.com/Account/Logon");
+            driver.Url = ConfigurationManager.AppSettings["URL"];
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Manage().Window.Size = new System.Drawing.Size(1920, 974);
             driver.FindElement(By.Id("UserName")).SendKeys("skipperbalbay");
